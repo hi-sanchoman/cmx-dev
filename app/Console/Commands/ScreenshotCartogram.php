@@ -94,19 +94,19 @@ class ScreenshotCartogram extends Command
     private function _generateCartogram($value, $id, $input) {
         // cartogram
         /*Browsershot::
-            url('http://185.146.3.112/plesk-site-preview/cemexlab.kz/https/185.146.3.112/show-cartogram/' . $id . '/' . $value)
+            url('http://185.146.3.112/plesk-site-preview/cemextest.kz/https/185.146.3.112/show-cartogram/' . $id . '/' . $value)
             ->setDelay(5000)
 			->windowSize(700, 675)
 			->noSandbox()
 			->timeout(120)
 			->save(public_path('img/map/cartograms/' . $id . '-' . $value . '2.png'));*/
 		
-		exec('/usr/bin/google-chrome --headless --hide-scrollbars --window-size=700,675 --screenshot="' . public_path('img/map/cartograms/' . $id . '-' . $value . '.png') . '" "http://185.146.3.112/plesk-site-preview/cemexlab.kz/https/185.146.3.112/show-cartogram/' . $id . '/' . $value . '" --no-sandbox --disable-gpu --disable-software-rasterizer');
+		exec('/usr/bin/google-chrome --headless --hide-scrollbars --window-size=700,675 --screenshot="' . public_path('img/map/cartograms/' . $id . '-' . $value . '.png') . '" "http://185.146.3.112/plesk-site-preview/cemextest.kz/https/185.146.3.112/show-cartogram/' . $id . '/' . $value . '" --no-sandbox --disable-gpu --disable-software-rasterizer');
 
         // legend
         /* if (!in_array($value, ['b', 'fe', 'na'])) {
             Browsershot::
-                url('http://185.146.3.112/plesk-site-preview/cemexlab.kz/https/185.146.3.112/show-legend/' . $id . '/' . $value)
+                url('http://185.146.3.112/plesk-site-preview/cemextest.kz/https/185.146.3.112/show-legend/' . $id . '/' . $value)
                 ->setDelay(5000)
 				->windowSize(240, 210)
 				->noSandbox()
@@ -116,7 +116,7 @@ class ScreenshotCartogram extends Command
                 ->save(public_path('img/map/legends/' . $id . '-' . $value . '2.png'));
         }*/
 		
-		exec('/usr/bin/google-chrome --headless --hide-scrollbars --window-size=240,210 --screenshot="' . public_path('img/map/legends/' . $id . '-' . $value . '.png') . '" "http://185.146.3.112/plesk-site-preview/cemexlab.kz/https/185.146.3.112/show-legend/' . $id . '/' . $value . '" --no-sandbox --disable-gpu --disable-software-rasterizer');
+		exec('/usr/bin/google-chrome --headless --hide-scrollbars --window-size=240,210 --screenshot="' . public_path('img/map/legends/' . $id . '-' . $value . '.png') . '" "http://185.146.3.112/plesk-site-preview/cemextest.kz/https/185.146.3.112/show-legend/' . $id . '/' . $value . '" --no-sandbox --disable-gpu --disable-software-rasterizer');
 
         $cartogram = Cartogram::with(['field', 'field.client'])->whereId($id)->firstOrfail();
         $field = $cartogram->field;

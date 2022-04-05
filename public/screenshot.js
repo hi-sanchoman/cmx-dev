@@ -48,7 +48,7 @@ var args = process.argv.slice(2);
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'], executablePath: '/usr/bin/google-chrome'});
   const page = await browser.newPage();
   
-var url = 'http://185.146.3.112/plesk-site-preview/cemexlab.kz/https/185.146.3.112/show-cartogram/' + args[0] + '/' + args[1];
+var url = 'http://185.146.3.112/plesk-site-preview/cemextest.kz/https/185.146.3.112/show-cartogram/' + args[0] + '/' + args[1];
 //console.log(url);
 //return;
 

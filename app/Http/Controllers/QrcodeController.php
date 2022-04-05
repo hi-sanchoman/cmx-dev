@@ -84,7 +84,7 @@ class QrcodeController extends AppBaseController
         }
 
         $url = route('qrcodes.scan', ['id' => $qrcode->id]);
-        $url = 'http://185.146.3.112/plesk-site-preview/cemexlab.kz/https/185.146.3.112/qrcodes/' . $qrcode->id . '/scan';
+        $url = 'http://185.146.3.112/plesk-site-preview/cemextest.kz/https/185.146.3.112/qrcodes/' . $qrcode->id . '/scan';
 
         \QrCode::size(512)
             ->format('svg')

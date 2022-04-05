@@ -133,7 +133,7 @@ class GenerateCartogram implements ShouldQueue
 		exec($cmd);
 
         // legend
-        exec('/usr/bin/google-chrome --headless --hide-scrollbars --window-size=240,210 --screenshot="' . public_path('img/map/legends/' . $id . '-' . $value . '.png') . '" "http://185.146.3.112/plesk-site-preview/cemexlab.kz/https/185.146.3.112/show-legend/' . $id . '/' . $value . '" --no-sandbox --disable-gpu --disable-software-rasterizer');
+        exec('/usr/bin/google-chrome --headless --hide-scrollbars --window-size=240,210 --screenshot="' . public_path('img/map/legends/' . $id . '-' . $value . '.png') . '" "http://185.146.3.112/plesk-site-preview/cemextest.kz/https/185.146.3.112/show-legend/' . $id . '/' . $value . '" --no-sandbox --disable-gpu --disable-software-rasterizer');
 
         $cartogram = Cartogram::with(['field', 'field.client'])->whereId($id)->firstOrfail();
         $field = $cartogram->field;
