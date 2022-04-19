@@ -12,6 +12,7 @@ use Flash;
 use Response;
 use App\Models\Sample;
 use Auth;
+use App\Models\Field;
 
 class QrcodeController extends AppBaseController
 {
@@ -92,6 +93,53 @@ class QrcodeController extends AppBaseController
 
         return view('qrcodes.show')->with('qrcode', $qrcode);
     }
+
+    /**
+     * Download all QR codes for specific field
+     * 
+     * @param int $fieldId field id
+     * 
+     * @return Response
+     */
+    public function downloadAll(Request $request, $fieldId) {
+        $field = Field::with(['polygon', 'polygon.points', 'polygon.points.qrcode'])->findOrFail($fieldId);
+        // dd($field->toArray());
+        
+        // prepare zip
+        $zipname = public_path('docs/qrcodes_' . $field->id . '.zip');
+
+        $zip = new \ZipArchive();      
+        $zip->open($zipname, \ZipArchive::CREATE);
+
+        // add to zip
+        foreach ($field->polygon->points as $point) {
+            $url = 'http://185.146.3.112/plesk-site-preview/cemextest.kz/https/185.146.3.112/qrcodes/' . $point->qrcode->id . '/scan';
+
+            $path = public_path('img/qrcodes/png_qrcode_' . $point->qrcode->id . '.png');
+
+            \QrCode::size(512)
+                ->format('png')
+                ->generate($url, $path);
+        
+            $zip->addFile($path, 'QR метки №' . $point->num . '.png');
+        }
+
+        $zip->close();
+
+        header('Content-Type: application/zip');
+        header("Content-Transfer-Encoding: Binary");
+        header("Content-Disposition: attachment; filename=QrCodes-" . $field->id . ".zip");
+        header("Pragma: no-cache"); 
+        header("Expires: 0");
+        header('Cache-Control: must-revalidate');
+        header('Content-Length: ' . filesize($zipname));
+
+        // download
+        readfile($zipname);
+
+        return 'put inside zip & download it';
+    }
+    
 
     /**
      * Show the form for editing the specified Qrcode.

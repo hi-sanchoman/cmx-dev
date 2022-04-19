@@ -4,7 +4,6 @@
 <div style="margin-top: 15px;"></div>
 @include('points.table')
 
-
 <!-- QR codes -->
 <h2 style="margin-top: 40px;">QR коды</h2 style="margin-top: 40px;">
 @include('qrcodes.table')

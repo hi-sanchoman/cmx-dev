@@ -1,3 +1,10 @@
+
+<a href="{{ route('qrcodes.downloadAll', [$field->id]) }}" target="_blank" class="btn btn-info form-btn">
+    <i class="fa fa-download"></i> 
+    @lang('crud.download_all')
+</a>
+<div style="margin-top: 15px;"></div>
+
 <div class="table-responsive">
     <table class="table" id="qrcodes-table">
         <thead>

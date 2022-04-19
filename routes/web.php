@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     Route::get('qrcodes/{id}/scan', [App\Http\Controllers\QrcodeController::class, 'scan'])->name('qrcodes.scan');
+    Route::get('qrcodes/{fieldId}/download', [App\Http\Controllers\QrcodeController::class, 'downloadAll'])->name('qrcodes.downloadAll');
     Route::resource('qrcodes', App\Http\Controllers\QrcodeController::class);
 
 

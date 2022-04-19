@@ -235,7 +235,7 @@ class PointController extends AppBaseController
 
         Flash::success(__('messages.deleted', ['model' => __('models/points.singular')]));
 
-        if (request->has('ajax')) {
+        if ($request->has('ajax')) {
             return 1;
         }
 
